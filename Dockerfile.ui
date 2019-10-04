@@ -1,0 +1,15 @@
+FROM node:12.10.0-alpine
+
+RUN wget -O choose-lunch-ui-master.zip https://github.com/fischer1983/choose-lunch-ui/archive/master.zip -P ./
+
+RUN unzip ./choose-lunch-ui-master.zip 
+
+WORKDIR /choose-lunch-ui-master 
+
+RUN npm install -g @angular/cli
+
+RUN npm install 
+
+EXPOSE 4200
+
+CMD ng serve --host 0.0.0.0 --port 4200

@@ -1,0 +1,18 @@
+FROM openjdk:8-alpine
+
+RUN apk add --no-cache maven
+
+RUN wget -O choose-lunch-api-master.zip https://github.com/fischer1983/choose-lunch-api/archive/master.zip -P ./
+
+RUN unzip ./choose-lunch-api-master.zip 
+
+WORKDIR /choose-lunch-api-master 
+
+RUN mvn clean install
+
+EXPOSE 8080
+
+WORKDIR /choose-lunch-api-master/target 
+
+CMD java -jar lunch-api-0.0.1-SNAPSHOT.jar
+
